@@ -1,6 +1,6 @@
 # FastCatalog.ai API Examples
 
-This repository provides simple Python and JavaScript code samples for interacting with the [FastCatalog.ai API](https://api.fastcatalog.ai/). Each example demonstrates a specific API scenario, such as searching for datasets, retrieving metadata, generating spreadsheets reports, and more.
+This repository provides simple Python and JavaScript code samples for interacting with the [FastCatalog.ai API](https://api.fastcatalog.ai/docs). Each example demonstrates a specific API scenario, such as searching for datasets, retrieving metadata, generating spreadsheets reports, and more.
 
 ## Overview
 
