@@ -34,7 +34,8 @@ The examples are organized into scenario-based folders under `examples/`, each w
 ### How to obtain your FastCatalog.ai API token
 
 1. Go to [https://app.fastcatalog.ai/settings](https://app.fastcatalog.ai/settings)
-2. Navigate to the ![API Access Tab](assets/API_access_tab.png)
+2. Navigate to the API Access tab
+![API Access Tab](assets/API_access_tab.png)
 3. Click the icon to copy the API token
 
 ### Running the examples
