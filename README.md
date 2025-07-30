@@ -11,8 +11,9 @@ The examples are organized into scenario-based folders under `examples/`, each w
 1. **Search by Dataset URL**  
    Search the catalog for a dataset using its homepage URL.
 
-2. **Complex Search**  
-   Search for a dataset or model using a combination of filters, pick the best match, get its UUID and retrieve its details.
+2. **# Find and retrieve details**
+    This example searches the catalog for a dataset using its URL as a filter, and retrieves its details using its UUID. Finally a summary is prepared from the retrieved object, highlighting some important information.
+
 
 3. **Get Dataset Terms**  
    Retrieve details of a dataset, including its terms, by UUID.
@@ -30,6 +31,12 @@ The examples are organized into scenario-based folders under `examples/`, each w
 - Node.js and/or Python 3.x installed.
 - [FastCatalog.ai API token](https://api.fastcatalog.ai/) saved as `FASTCATALOG_TOKEN` in `secrets/keys.env`.
 
+### How to obtain your FastCatalog.ai API token
+
+1. Go to [https://app.fastcatalog.ai/settings](https://app.fastcatalog.ai/settings)
+2. Navigate to the ![API Access Tab](assets/API_access_tab.png)
+3. Click the icon to copy the API token
+
 ### Running the examples
 
 Python
@@ -43,3 +50,4 @@ JS
 ```bash
 ./run_all_js_examples.sh
 ```
+

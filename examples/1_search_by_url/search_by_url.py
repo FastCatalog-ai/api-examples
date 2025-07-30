@@ -13,5 +13,7 @@ headers = {
     "Content-Type": "application/json"
 }
 
-response = requests.post(API_URL, json=payload, headers=headers)
+limit = 3
+
+response = requests.post(f"{API_URL}?limit={limit}", json=payload, headers=headers)
 print(response.status_code, json.dumps(response.json(), indent=2))
