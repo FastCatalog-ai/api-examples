@@ -1,500 +1,0 @@
-File Structure Summary for .:
-./package.json
-./setup.sh
-./run_all_js_examples.sh
-./examples/output/catalog_items.xlsx
-./examples/3_get_dataset_terms/get_dataset_terms.js
-./examples/3_get_dataset_terms/get_dataset_terms.py
-./examples/3_get_dataset_terms/README.md
-./examples/5_generate_dataset_spreadsheet/generate_dataset_spreadsheet.py
-./examples/5_generate_dataset_spreadsheet/generate_dataset_spreadsheet.js
-./examples/5_generate_dataset_spreadsheet/README.md
-./examples/4_get_ai_model_provenance/get_ai_model_provenance.py
-./examples/4_get_ai_model_provenance/get_ai_model_provenance.js
-./examples/4_get_ai_model_provenance/README.md
-./examples/1_search_by_url/search_by_url.py
-./examples/1_search_by_url/README.md
-./examples/1_search_by_url/search_by_url.js
-./examples/2_complex_search/complex_search.js
-./README.md
-./run_all_python_examples.sh
-
-
-Detailed File Content:
-
-File: ./package.json
-----------------------------------------
-{
-  "name": "api-examples",
-  "version": "1.0.0",
-  "description": "Simple Python and JavaScript examples for the FastCatalog.ai API.",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"No tests specified\" && exit 0"
-  },
-  "dependencies": {
-    "axios": "^1.11.0"
-  },
-  "author": "",
-  "license": "MIT"
-}
-
-
-
-File: ./setup.sh
-----------------------------------------
-#!/bin/bash
-
-cd examples
-
-
-
-# Scenario folders and files
-for n in 1 2 3 4 5; do
-  case $n in
-    1) fname="search_by_url";;
-    2) fname="complex_search";;
-    3) fname="get_dataset_terms";;
-    4) fname="get_ai_model_provenance";;
-    5) fname="generate_dataset_spreadsheet";;
-  esac
-
-  mkdir -p "examples/${n}_${fname}"
-  touch "examples/${n}_${fname}/README.md"
-  touch "examples/${n}_${fname}/${fname}.py"
-  touch "examples/${n}_${fname}/${fname}.js"
-done
-
-echo "Done."
-
-
-
-File: ./run_all_js_examples.sh
-----------------------------------------
-#!/bin/bash
-
-if [ ! -d "node_modules" ]; then
-  echo "Installing JS dependencies..."
-  npm install
-fi
-
-# Load environment variables from secrets/keys.env
-# FASTCATALOG_TOKEN=YOUR_TOKEN
-set -a
-source secrets/keys.env
-set +a
-
-
-set -e
-
-cd examples
-
-for dir in [1-5]_*/; do
-  jsfile=$(find "$dir" -maxdepth 1 -name '*.js')
-  if [ -n "$jsfile" ]; then
-    echo "Running $jsfile"
-    node "$jsfile"
-  fi
-done
-
-
-
-File: ./examples/output/catalog_items.xlsx
-----------------------------------------
-PK!a]I:O[Content_Types].xml­”ËnÂ0E÷ıŠÈÛ*1tQUEË©ô\{B,Ûòş¾“ğP[Q ‚M¬dîÜsÇ<-—- ¡¾ı¢'2ğ:ë§¥xŸ<çw"CRŞ(<”b(FÃ«Ád3nöXŠš(ŞK‰º†Fa"x®T!5Šø5MeTz¦¦ oz½[©ƒ'ğ”Së!†ƒG¨ÔÜQö´äÏë 	Šìa-lY¥P1:«q].¼ùEÉ7„‚;;Ö6â5„ÜKh+6}¯¼3ÉÈÆ*Ñ‹jX%MĞã"JÖ‡]öÄUe5°Ç¼á–Ú@LÙYØe>ÈÖ!ÁÿáÛ=j»O$.DZ9À³GÅ˜@¬¨qÅÚô™ø‚õ³6¿³9üiöÂìÒÃ¶kÑ(ëOàwb”İrşÔ?ƒìüy­˜7J|\üä¿{osÈî>~PK!òŸIÚéK_rels/.rels­’ÁNÃ0@ï|EäûšnH¡¥» ¤İ&4>À$nµ£Äƒîï‰@iqìçgËëÍ<êRö,«ËÎ‡ÎÀËşiq*‡#2p¤›æfıL#J©É½YHÈz‘ø u¶=M˜+ÊOËiB)ÏÔéˆvÀôª®ïtúÉ€æ„©¶Î@Úº%¨ı1Ò5ln[oé‘ía¢ gZüÊ(dL‰yÔïœ†Wæ¡*PĞç]V×»ü=§HĞ¡ ¶œhS©NâËZ¿uÛ]	çÏŒKB·ÿ¹š…‚#wY	cü2Ò'7Ğ|PK!Du[ğè¹xl/_rels/workbook.xml.rels­’ÁjÃ0Dïı
-±÷ZvJ)‘s)…\Ûô„´¶LlIh·iı÷	M¡ŸÄŒØ™»ëÍÏĞ‹&ê‚WP%ô&ØÎ·
->woÏ ˆµ·ºŒH°©ÖïØkÎ3äºH"‡xRà˜ã‹”dšŠÑçŸ&¤As–©•Q›½nQ.ÊòI¦iÔW™bk¤­­@ìÆˆÿÉMÓ|æk@Ï7*äwH{rˆœCuj‘\,’§§*r*ÈÛ0‹9a8ÏâÈIÍ»Ë9ˆÇ>/ôqÖ÷êW³Ö;Ğ~pÊ×6¥˜Ú¿0òêâê#PK!æ\iÑÍ`8xl/worksheets/sheet1.xml•›]sªH†ï÷WXŞo„APRIN|ğaØª­ı¼æD­£b9ÙóïP‘é~:7)#Ït3ıNÃøŠ7_şÛnF?²¢\ç»Û±}eGÙî%_®wo·ã¿ÿ
-~Ge•î–é&ße·ãŸY9şr÷ËÍG^|/WYVê»òv¼ªªıõdR¾¬²mZ^åûlWyÍ‹mZÕÿo“r_dé²´İL”ey“mºŞ®IŒüõuı’=æ/ïÛlW‚Ù&­êÓ/Wë}9¾»Y®ëcÍ|FEöz;şj_'ÊOînÚÔÿ¬³²÷zT¥ßşÌ6ÙK•-ëŒGÍÌ¾åù÷æ`\¿e5C'llĞÕïÅh™½¦ï›êü#ÊÖo«ªâ6C^òMÙşm×»6ò6ıïa½¬V·cïjf[¾3sÇ£—÷²Ê·ÿŞ·£ãÔqœêÆ9®h sèt•%8=œ*Ñ@÷8pşÙŒşq ßœÊ2ÚÖ©ªÖy¨,§İ	bötí“&¶fC»pÓ*½»)òQÑ®†rŸ6ıc_×Ñê$Í»÷ÍÛíÁz55KúÇu3ùÑÄ9œ°;bRï2(œA±ñŠdà„ƒ388ƒÃÆOIN¸8ƒ«g5M¦ºBwmwJıÕm«^`OO}Ï‰99NÌuâ‘¾N<qÂ&:±u$Ñ*ˆ£#1@ˆ€¸:òRÚ 3,«÷IY½6²ƒúáşt¬—•èõ"Øã0ò4ŒÃH8ŒDÃH<Œ,†‘ça$1"š¦3¤©².‹:kCO¡¨§c½‹½„ôÏ#@Hÿ<„ôOÀ&*ˆBZ,i± ¤Å!—¯g€~HrAÔ9Õ¶:oC»ä¾tõt¬w_¡¢r„‰
-¢ä	 D÷€#LT…, D÷ D÷@ˆîÏ!º'™cQ} êÔĞ¨~ÙC{…ûÓ±^VRÇL‰ìaWßa$FÂa$Fb0#²!¥{N”MÓfÌDuÚ8u*Uµ;Ø;}²öCÿ#`˜°&0¡€‰LŒæE;1´e¹3£lç&í^ÛÒKqw°7ºFİ	#†	Ì—n†Ãql*0`œ3m_Ç¡fJÌ…:¶úl+S+¶²\
-Ì.0gx3€	L$`b4÷0s*ğp®ÄÌè;@`Ó}×v7Şî`oôÎ.0g¸ÀÃL `B	˜0EŒMÎ•˜]àégš:xÊV–GÀp9Ãf
-˜HÀÄhî0S*ğp®ÄÌè#;jfØ5İƒ]¾B]*0`<*0g¸ÀÃL `B	˜XÀ,ĞÜé‡]AœÄÌè#cÊxöŸw»ƒ½	Pk
-0|Í.ğ0˜PÀD&FsgsffQ‡s%fF¹TÆ]ôÌÔÁ3¶²f6˜3\`‡Uˆ¡N`¸Àœa¶b¨¯Î‡ÚÊˆ¡¾2b¨±Œ˜Î²+Ëtî[Vì&Ì]®0g¸Â S0sª°À·WXà\¡óa-Ì™9kaÀØTaÀ¨
-#ûÊöM
-û¦æËœYœa¶$Š3¥
-Æ¥
-\,Ç£
-g)â°J€a”Ã.Òœñ-¬°B^–ÑuV&3Kq“…ùÎ€a
-£8ÔyFµÃFqh#†*Œjf!†šYˆ¡4b.8Ğ
-™Y¦OJªof9T`n²00Ì…Ûg	˜@À„&01š5³CÍhA®ÄÌèÖÌR}3‹	Œ*zF½†,0³L(`"£y±ë`™eft?kf)“™¥¸ÉâÓmbX`f	˜@À„&01`xƒ¹S;Z+13ºÀÈÌ2v°ÉÌRÜdñéCAˆq©À3KÀ&0‘€‰ÌÍu°ÀÌ23ºÀÈÌ2v°kê`n²øô%ÀğK´ÀÌ0€	L$`b4÷90ôqA®ÄÌè#3ËvL
-{¦.‹ÅöÑ;bi±´ÀĞßI£dô1:QÇBÔò€õ< tÁôPÈÕ2ùÒªïj±İp‘,ê[ˆ`¶£L `B	˜XÀ,`X3JÌŒ.1òµŒ·ã¾­Å$6}@õ@\âa?êIÀ&0‘€‰Ìˆ~}(”˜]bdl»Ø7u1ğ‘èÓÃâÎ0€	L$`b³€b›jÁCZfæ ñ¤÷€ô½Êƒõ¦ÊŠãÏTÜÓÏTV?÷Y±Yï¾—½×¨y(¿¸^/oÇE¼´5ø8=@àŞëšçO;`Š"Ì{€‹"ô~˜¡ÍQ1G!4Â‡1ì~­,DCP=Û§HÎªhûÂ5m¾]>#°ªv_ÖUGPeÛï¢Îªm¬#¨¸í÷gW·¯¡ÂÕÕTİÖ”=#°º:««ú2*X]Õ—QÁêê\·Jë.¸r›ùKWG`u•Ö¥°º:‚«ÛÀi«;é_\öé[ö[Z¼­wåh“½Ö×-ëªY‡;LûºÊ÷í«ú”¿åU}ÿ9ı·ÊÒeV4ÿÕ5yÍóêôO“¤ûqàİÿPK!ûé‰Ô°xl/workbook.xml‘KOÜ0…÷ıîÕl;yhuF“ 
-EEB©–ÈÄ7?"Û!Ã¿ç:C€Ù±²ÏıåœãíÉ^+öŒÎKk*È–)04Òì*ø{ñã'0¸\Yƒ¼ ‡“úÛv´îéÑÚ'F÷¯ ¡ß$‰o:ÔÜ/m†¾´ÖiHº]â{‡\ø1h•äiZ&šKÂÆ}…aÛV6xn›A£	ˆCÅ¹÷ì=ÔÛV*¼;b¼ïÿrM¶÷
-˜â>ü2 ¨`EÒx4pCÿk*Š"- ©ßCŞ8&°åƒ
-·dm¦S]ù*ÏËx2º“8úKQ²ı½4Âä+jöeVYlœö÷R„eº~ŸıA¹ëBë²L#<ùDŸú›Wf¦pgV÷ô8&xz«8¿¤ÚHÚ¸K‘M”ù*E‘E,æX½áöÊèåÃ…Tİ9ü‘{Œ}5\ı›ñ”¦“B`lêß§‹b³¸Zäëmò‰])ú/Áê5.“İ|Udk`í ÔÍ®Í•åSŒh}î´~PK!§LŠ3;,xl/sharedStrings.xmlÅZkoÛFı¾¿b``a	 ©—ã$n’Öñ£uk'i,/v÷K0"GkŠdg†²•Åş÷=wfHQ$å¸hZG"çuï=÷ÜÇèÍ÷«„­…Tq–¾=Ã&Ò0‹âtñöànzé¿:`Jó4âI–Š·¡¾÷·7Ji†©©z{°Ô:?T¸+®‚,)ŞÌ3¹â_åb r)x¤–BèU2‡ÇƒÓfEªßŒ_X‘Æ¿âÌ>Ş½Qñ»7úİ"’k±Ù†]r¥Ï¸ÆiY–¾èwo4ÒÇ/üáK2d£ÉÉÑèd<bwÓ³æ°ËL2½,ÁÂ%Nç™ÇÖ±Šus$‰§ Ïó`İÃj÷û8hN¹š³X©B(¦š‡­E!~¢³Uäy&õ»ë6Ÿ‹\/›?ğ•h>›nòÖ³s&\ByS!WŠesv§Zƒn2Ø7Ö›æóÛM
-%é8dç8]óíéRğYÜ5ó<{H“ŒGìFèeí}}÷ùºùîS!óL	6`çB…2ÎuÜ6³Á‰Ü<e¼ˆ[èÀ{^=&|åÏ‹4¤…ı'	Ğîï›ıgÏd¶SB³V_åp—TŸ0šò¥œòÅMù‚)Áo*KûÍÜ:ÍÇaèÏ6şQ0ôØ-O„‚w…‚†! Ág‰ £2x)»xÔB¦<ñ/yˆØ­ë8Š}Ê’8ÜìN—:ÇaÌv•j“-àû­eíÌæ‰´x„´?ß~üà+-‹PYÿ;&x¸4Ú`y§Ú:@œªï†Ázƒõ=¦³,Q¬Ç¥äÆôE[“+öë%Ë¹Ô!•Âª|ªÍ*UËHµŒËE±‚ŞUK±Ã =)~/b	}ÀÕ`(R1Õ	;<cÆì¤9b‡âkã74ĞNÁ›¬ì§b¯‹9‡Æ0‹ğèÑ$e*^åÉÆ¬¦”YÊ6‚C:VÚ:„%ÿb÷e‹$R‡'ì?‡—±+‘zìğš×¾8äÓÇÓùÎÇIüÃÿ¶¡9CÍ¢ÒÕzÜHhABƒ=K)€:OTÆ¸ukXóú€RÅN?]í£ÉåV-A˜Ê)ƒ-î{½Èc[²%,úyœ¼ÁH(fAœµ¸ö&¾Â*ÓãÅÒÿ½0\æ1U±Wésb}	8’É¤bÍ“‚{7Äø‚€ä-ÛÄ‚Å1 ÈhÅ·=¨dP.Ñß±gv
-3	Ø¢úfµÕˆ/À—¸2Š¿ÂRäbÌFÓ )üİí)ëÕ=úŠ}Jp.=†—Øoí÷/9Ï	ıÈÖÂÒt‹`RÂ¼H€îJ¿[Ôc4Áê@Üf¥áI$vBÆÂßtQ@»l•E‚(à\ˆüVˆ{ÿcÿlÉµQØML®‘ø¯Çã÷şUªtß<ç,,ìVNÿp¦ÄÈdÑ®XîóÅíÔ~œËlÅ¦°Ï{ÛÒLÿ´ˆieÕØEƒ² à<9V±œÏ¾¾¾ÅYˆ]µ(Ñ`y¤nÓê´)"ödi&¥l´‹g°´^J!ÈŞ†´VfH¤Â{lç1ñ(ÂÂ¬I”‘°:ÈÌ6}.…Ì+% —SYçôg°W?¦°–+cš«HÚ8“"QÀ¦Öt†²VJ$k0%²¦Àx!ÑÆ®B{Ÿá¨&€&f¥yœYšŠ¶‹×@D‘’B–¥‰QL‘aV8¥wã–õ€Û~Ë¶'ÚÃR$_[p>ÍarÁ®SPü8¶V4áqËÄ6ëÆ0B¶‰ô†'$¹ñ`…°B±Ó=‹²Ğ„!CÍ6ÒAÖ±ÌRzÌÏ8´u°¼˜!Ø~ƒÉ÷Qo˜dEh2ğ²àˆŠ LóAøZ¼_¼<šÌ†³ùLŒ†ƒ-×F2^ƒa³l‘e¯ìƒÁ<K"Ò`´y÷ëËÉxõ©ğ	“ŸÓâ×‹ë‹¥ş…ßGÿ¼'??ÁÈ¬¦@_Fw;\LŠAÒSDzÜ*r0N¦ôbpÓÅ)0­ŠDÇÈ=D^3Éj»ôœVÎ–qÊYoêÔÄîÒØÔ?1¸bDƒ;d¸Œs³ì2SÄß¢Fä;Vä.ïú3Y’ëÅÆ£*7ê5%5-E,w1¿ïûuõ–”E%d‰eœkb¾4³3ÍşøiÊz‹\û“à¬#g™?:¾ïÛ´k7B…<·‰~,\<ëMú¬ä$3ÆX-›iëwé”pN5yP9 ÚleèÕ'j!!·±Ã)¾e¹RK-oŞŸHš‚ÿ®‘A´
-ÃkDW£cïèø¨4
-#8î“v@’‘C·¤Ñ£×Pƒ‹LBG¨Û«ïVmHQqŸ@T]s+ÎŒJÏV…ƒúN*}ˆíyDn+o@\ s•a®$+«ŒØÅ‘2mà®¿m©°MÓÛhq÷¾ù¯ö/f:·–[¦ufÂ“;MdD‚F6b+ØEæõ@ó!’6ì™.Zsy¼a#YÁ¹(®¹Œ³B•ghéûÇ$›ñ–Mwä#zQfyŸJ¦2–;¸J‚3‰äÉV/ã¦ì0†*(ÏQmé½ˆ®R–¥Ü}–eH¯3T©ÍKœ¤,·Õ¶ªÅ~
-ø•ˆğI:”EÅ
-5pÁft[:Rh»[î:ZäiÓx%¶g½¥CA¿ÏuhĞÊ=>+¿ú‰9G\ úa˜eãÔ'vö;ğUí«¶û„Ÿ*4b)Éiá@M‚BùÀ¾öG_ñ¯YÊ”9ÅôâóÍíßÇÃÓçø{öñÃùÕôêãzôñîn/‚<š·|0-UÈş'Iöğl±ñïŠßi¤üjæ3«Ñ³v¨éîÖõìÔ²&[JÊ¸~ÔÑó)±TÚêY¾—\¥à‘è>K2sê¹[ÆwªŸtp:Ôe}åpÓMThS„Á"äRqèİJœ9h=îöl…Òbßíæ›Ñäˆ=ˆ$ñË ÚÕv ôÒ“Uf‹zÊG)¥FĞqÔ9RP¤g“räî„VDX/‹›İXh|–2!¸¶¥ZS “»¶«YMí3‘«©MÆ‡)Š¦ğxP›Ş™Ù5Ê7ä!“ã÷}:ÜnH¡ÓÏMc2ñ_¼®UXPG±!ŸL_¼êÛLiÛ$iõ'wjÁõ0¹Í*~­\…ÎãEas vx¡ŒßïÈô©‘åÓŸïÌìº¦ĞïªVmÚJÅÁ6ßjwO/dE¤€ÆWÈ…õfĞ–«+»4¥L.…é\@ËåÎkÁnA²@­SH.áNĞH×á½®Ó3¨ü¾¢ yñ˜£‰5q<1Bä1D%ìfä@YfÔt)MåE=On¨hš)ËbQ¾b)_	k$[à˜~;Õº”Ê¶«¹]3À®î‚Â†=ˆiÚº ª\”ˆp¥Ÿq¤êÀ[L[¬Ö{[SVª7WÂzâ˜úÃz,ùÆÇêL¦®¦îYã0¥ZÜŞ-ÁjP{>ºX/ä…Âú»C»J'	ø¬÷4
-áémí>6t=Á˜¨YPÛu5êäí†@*Ù”UãË—/_¿OğïøõèÕëãÎÊ©kÒê·Üú	ÃD±)1té2v-N]nê-"hRÓí6½TÖ€ ZtØíR[³“’u#ßò‡Á;­ù f(*…É¦ì@Û1UfÃG0¯tShT>Ó©³
-‡‘X‹-£:“ZèV
-•¤›Ht7y-pìá1ĞtƒKxƒªh
-/ÑğŞmRÏäˆ{‚úFØÆÔË[ÇtSw®©ÁFïvÎT÷Î–y\¯±ÕÀ­zAÇÃv•uF<¢Ğ3°1EîSm“nBÔQ0¬šC½³3öş_ô¨mŒê¤Òê"–ĞH
-—u®ZÈ	ìD¬¶5‡»¡È>Ø6)­nv.G›–w#Ìİ¾z®W®»SÅÓµ‰í4»õªÛ’ZX[â+¤ki*½I¨ga®2ª˜~‹ùD»"IJ¶Ÿª—-Û8¾ï¥™Ieu)­×º›˜¨¥Õoßl{Wæ¶¡Å;—.³
-µ-[cŸ¿äRa@].×x~âfá[¨ğv;®Ucy¯ÕAŠî:I¢KIß^>uÓT­)ö­ë=,cèÂvËU»¥O|êèç«UK«©ïZí såZfĞ<uN|ÛÇ¶MÆ^û†Ác­«›İÖÛ2³7Öò­ná	Hu1ÚÛp8D¡ŞKçıBe*½”Y±XşåUû¿Zdß5€İsÏ5Å‹¬Ÿ6[uú²1?pq´ÖcÎ—Zÿ­Q6¹€ÒÈvKKÙö÷ş¨WÒ|ç"m«hàò^hÁ6øÊ`Ùî¯ì*u-v‡²c³ÖYZE_Ïßå%ZsšiÕöş?Õ—ÕQMrUt¹å¾lÛaşXåÓÊ9¯\Û±³ôé¬6[eæLş8w¿òÙWW¶¼İ•´.]ò\òI=Î{‘Æ_…lYµ\¢ÊNğä•iRÜ˜ÕÜ‹'Šg—Æd8§WöÜ	£ñ+×yÄòFZRĞMè{p‘.,aüúuÌ<£–a—"ÀA–EìIYyu¹­Ÿì$lpSo·¦¶ö†úfïnGtv3ª¹ÊN·ê#UöÈlÉÎÛ0¶«4<w—äìşÇ‹wÏôéóYÿ;jR	¹29q•ñ'0¿2VQìÚR‡˜(<(úÇO€Ä×eVTaiïov.Á¡ÜPoÂ¦"\¦Y’-6Û{Ó³,ğØµ‚C)ê5Bˆ½-ÂùŞú¢²JY`Tù™ú1©»§±;A×¢Ü+ïíÑîşbƒ~#‘à²WÁhjUO‘ÜÍîØS?ÙTq®–0·İ·—Ó¾;¤i-„Æí%¢ğùÚŞÇc£…¹ƒµÇÆ<3íóµ¥Jï'Ö¯AšB{66ÉêfÚëm‰–¢	©*„ˆf<¼÷\àóN¬„4O$.}_`ìÚ•İS´UU[$¥Õ_«<jü,¦n€Råˆ5¥{;·˜Í+º5lİh–AG5¶¯léÇ(ÅjÛm”P1XâéIñÈ@{~7
-^ÜìP§{x¥lHã¶I>/2ƒÉ2Ì¹Ğ›ş³Œl/J:°Ï•Ph ¤•Ot¨®["hÊ2ê[Òf½(õëXj ™ì±î^!JéwÿPK!2•ğkê	xl/styles.xmlÍVmkÛ0ş¾_!ô}uí¤é:l—¶Á0ØÆ ì«lË@/FR2§¿~'É‰](K—m¡	Äw§ç{tÉ)Jo{ÁÑ–jÃ”Ìp|q‰••ª™l3ü}U¼ÿ€‘±DÖ„+I3¼£ßæïRcwœ>®)µ¤ÉğÚÚîc™jM1ª£V¥±àê62¦¤6.Iğ(¹¼\D‚0‰ó´QÒT©´N†@š'´%dÅ8ÊÓJq¥‘zĞá#’„³R3lˆ`|Â‰xEN0©´F¡Bø,£—ké¶Ìp1¼şMAÿ0Ä8?ìø‡@vÄZªeìÕ®ƒıJè~ ñ¸#èV“]œ\½>Á(Îj§¢}˜î<ÇÉbæhÊaÉšö´ÎğbîÙ'ŒYk9_ÎŠë3Õº_Şç©5şzÎP+qï?­åğ›,•®á$˜Îaå)§…tÍÚµ{ZÕ¹ÊZ%À¨i•$ÜØgL3‘?-2l×~ÚÃp‘UÃG4°Åz”—p
-˜½Ê£Ø{y/ƒ-ª(çéGsèS|}ƒäFÂ~‚VÃê¦|oBs3ĞÇñOÙ÷„öú$ZÔ7şÿ“ÙÉ4;³é:¾+TèÎàAÎèİû´Ñ¿ã¬•‚îÛIö.Z+Í€È¥¨ÆîïÊ²jù©I·¢½İ™}óªİÏ~¯ÿ4Å'j™¿!-WoHËâ\Z¢aş&CşlÄQänşên6|"¨Ü0n™|a¼³îÇÉö«–”pzV8jÚ·«Ãb†Gû­ÙFÜPßØVÙ5ÚŸİù/¼‚ñ––ÿPK!úFT°Rxl/theme/theme1.xmlíYMÛD¾ó+F¾·;Í®š­6Ù¤…í¶«İ´¨Ç‰=±§{¬™ÉnsCí		Q$nP©•¸”_³PEê_àõG’ñf²Í¶‹µ9$ñó~øçêµ1CGDHÊ“¶å\®Yˆ$>h¶­;ƒş¥–…¤ÂI€OHÛši]Ûúà*ŞT‰	òDnâ¶)•nÚ¶ôaËË<%	ÜqcKÚÀÇÀ6fv½VkÚ1¦‰…×Û£õ	d,­­óƒ¯DÉlÃgâĞÏ%ê96;ÙœÊ.è³¶r~< ”…–
-n´­Zş±ì­«öœˆ©´]?ÿ”t%A0®çt"Î	¾»qegÎ¿^ğ_Æõz½nÏ™óËØ÷ÁRg	ëö[NgÆS—Ë¼»5¯æVñÿÆ~£Óéx|cw—ğ­ZÓİ®Wğîï-ëßÙîv›¼·À7—ğı+M·ŠÏA£Éx	Ås™9dÄÙ#¼ğÖ,([Ë®‚>Q«r-Æ÷¹è .V4Ajš’ö×ÅñPPœ	À›kwŠ-_.me²ôMUÛú(ÅPÈ«ç?¼zş½zşääá³“‡?Ÿ<ztòğ'áœ„:áËï>ÿë›OĞŸO¿}ùøK3^êøß~üô×_¾0•|ñÕ“ßŸ=yñõg|ÿØßx¨Ã4&İ"Çè€Ç`›AŠóQ"L+8¤ØSQxkŠ™	×!UçİĞLÀë“û]#1QÔÜâ
-psÖáÂhÎn&K7g’„fáb¢ã0>2Éî
-mo’B&SËnD*jî3ˆ6IBÊîñ1!²{”VüºG}Á%)t¢¦F—èP™‰nĞâ25)¡®øfï.êpfb¿CªH(ÌL,	«¸ñ:(5Æ1Ó‘7±ŠLJN…_q¸Té0z‘ÒDs[L+êîbèDÆ°ï±i\E
-EÇ&äMÌ¹Üáãn„ãÔ¨3M"û¡CŠb´Ï•Q	^­lqÀÉÊpß¥D¯¬ïĞ02'Hvg"Ê®]é¿1MÎjÆŒB7~ßŒgğmx4™Jât^…û6Ş<Iö	äúû¾û¾ï¾‹}wU-¯ÛmÖÖçâœ_¼rHQÆÕ”‘›2oÍ”ú°™/r¢ùLFpYŠ«àBók$¸ú˜ªè0Â)ˆqr	¡,Y‡¥\ÂIÀZÉ;?NR0>ßófg@@cµÇƒb»¡ŸçlòU(uAŒÁºÂWŞN˜S×”æxfiŞ™ÒlÍ›Pg§Y/DCÆ`F‚ÌïƒYX.<D2Â)cäqkº­õz¯iÒ6o'm éâÜâ¼ˆRm)Jör9²¤ºBÇ •W÷,äã´m`’‚Ë8~2k@˜…IÛòUiÊk‹ù´Áæ´tj+®ˆH…T;XFU~köê$Yè_÷ÜÌc€¡­§E£åü‹ZØ§CKF#â«;‹eyO‡QpŒ†l"0èíÙP	ÏŒúl! Bİ2ñª•_VÁéW4eu`–F¸ìI--ö<¿ë¯4õìº¿¡)4Å{wMÉ2ÆÖF¨`e9Ú¶¸P‡.”FÔïrY ‚²ÈTB,{ßœéJ}«àQ4¹0R4D‚B§S‘ d_•v¾†™S×Ÿ¯3FeŸ™«+ÓâwHdÕÛÌì·P4ë&¥#rÜé Ù¦ê†ıÿğäã®˜|Î‚ÜóÌ"®ÖôµGÁÆÛ©pÎGmİlqİ[ûQ›Âáe_Ğ¸©ğÙb¾ğˆ>šO”ñR«,¿ùætniÆe¬şÙ1j‚ÖŠx_äğ©9»±ÂÙg‹{sg{_{g»Ú^.Q[;Èä«¥?øğ>ÈŞƒÒ„)Y¼MzGÍîì/àc/H·şPK!]}~[}#xl/worksheets/_rels/sheet1.xml.relsÕ™moÛ6ÇßïSöng‘)‰E“]S í
-¬k;ì-¶`YôĞ%ıô;%İwY0®«’¾0DQöéşä‘÷;úñ“‹C³zıPÇödÍ7l½ÂÖE_·Û“õ»·Ï¡Z¯†Ñ´Ş4±Å“õ%ë'§ß<ş3Òo†]İ+2Ò'ëİ8v²lp;<˜a;léIˆıÁŒtÛo³Î¸½Ùb&+²ş¦õé‘ÍÕ¹?Y÷ç¯Wo/;ü7¶cµÃgÑMlÇ[^‘íÈRßÔíŒš~‹ãµÙìš®Û3ŒÎŒ¤t»1uö±™ıñåWÑ“g#ö­iÖÙí‹/ìğÁÔÍS×Å~üşØç4WóûÛ<…Ñ¡®‚ôŠƒ6E<—9“¥*„Ri¢äB¢vÓvK‹$‡3O‚‡ìip ·8Ì.s€0µn6Î4diÛ÷­`N½ÅººCzŒ›m=î&»©cbÜ©ûŸLÅ5æ†€¡,A"cP±ÒƒfÖ8Í*‹&ªXH”kâä7ã@ó³›Ìı´qm2§Q1ŠÁRæV2,r–İœ=ß×ïiÎbÜ6s®;²O{jÆ/Ÿ¾{]æâğÓ/]ó¢^Ÿıx¶_š½ÿõ¹Ë_¤G¹Ğpô”>WŠ(Ó¼¬î?}eCšª¬¸SIF‘˜£ªB^XeÒDé…DÍöÌõÀÛYÉß¶JÅÇö@SG¥ä$-œİÿ/P…r+rÜ*0
-< ·e¥Qæ‰ª–B…Ï[üKÂ­nö‘¸««ø³á1˜©çü“Íæ,6ÇU¢¤¥@âH]fı•‚uÓÄß€úy¢ïKñÂ‘ïûŞml&¿M¼0s„qƒ£obŸü ıcaC°†Ò@	ÖW
-,µÉ})•MÜtùRùÿ#t]%pÄn@Ü){Fí7sû‘èøR™úé‘u•vd%9˜ 
-Ğ•VF{îY‘dKeöOØúPcošyu¦¶/³WõÅUOu!ÄSxÏ6©«~©t~-.¥ô´ß*J~’+Z((ªPP"aKbéùòº³
-ËRåPU%‘—tî8¡½VYBèDUËüS%v“ø?§îK¾),ZÒ‰¥`á+©éÄ½H2¶ŠÿU'–Œ%Ê:ñuˆp>PUÆjá=8º€t…¥,\hÜûÜ,8K¤¥ˆâv6"mÇLtŞRÿäÆÿGùÀˆ+…Vy@G\$‹Ê‚FÁèVTBIíOUµF|
-·×ğÃÎŒ‰
- ÊRŠS¤Éh7ŸâPÔPË™2w,œìè_£ÓßPK!-±«Ü%PdocProps/core.xml’ËjÃ0E÷ı
-£½-Ëîa;Ğ–¬(4¥¡;!MQë¤ÖñßWv'¬ºİ;gîªf;Õ&¿à¼4ºF$ËQš!õ¦FËyúˆ˜¬5jÔƒG³æ¦â–rãàÍ.HğIiO¹­Ñ6K1ö|Šù,:t×Æ)bé6Ø2şÍ6€‹<¿Ç
-,0<S;Ñ)ø„´?®‚chA“Œà“7€SşjÃ¨œ9•½…«Ö£8¹w^NÆ®ë²®­1?Á«Åëû¸j*õp*¨©§ÜÆ5>/âáZæÃ"x-A<õQ¿òvXdß"‰è>îQù,Ÿ_–sÔyq—æi™/IIo	-È×0ò¢ÿT‡!ÿ&ûÜ—Ÿ ùPK!œ[	ÏzdocProps/app.xmlRÁnÛ0½ï+İ9Á0¬¢H;ô°a’¶gN¦c¡²$ˆ¬‘ìë';ˆël=M§ÇÇ§çgŠêöØ¹¢ÇD6øJ,¥(Ğ›P[¨ÄÓşÛÍWQƒ¯Á•8!‰[ıImSˆ˜Ø"ÙÁS%Zæ¸–’L‹Ğ"·}î4!uÀ¹LšÆ¼æ­CÏrU–_$}õMœÅÙqİóÿšÖÁùèyŠÙO«»5Àù'õkR Ğpñp4è”œ7U6Ú¡yK–OºTr^ª‡›l¬p„J¾êa˜Ùl"­z^÷h8¤‚ìï<µ•(~á§=$ÅYv.Fì"qÒ/!½R‹È¤äDp®cûY/GA×B9Éø:âŞ²CúÙl!ñ‰—óÄc1Ë¸	]Ìëà?ÈxùÚ_şÃğyˆrBß­¥§¸÷Àxé5©v-$¬ó+L#Ÿõ˜³%7è7-øÖÍ¿aÏK®—«E™ÏøîNÉ÷}ÖPK!a]I:O€[Content_Types].xmlPK!òŸIÚéK€€_rels/.relsPK!Du[ğè¹€’xl/_rels/workbook.xml.relsPK!æ\iÑÍ`8€²xl/worksheets/sheet1.xmlPK!ûé‰Ô°€µxl/workbook.xmlPK!§LŠ3;,€pxl/sharedStrings.xmlPK!2•ğkê	€Õxl/styles.xmlPK!úFT°R€kxl/theme/theme1.xmlPK!]}~[}#€L%xl/worksheets/_rels/sheet1.xml.relsPK!-±«Ü%P€)docProps/core.xmlPK!œ[	Ïz€â*docProps/app.xmlPKÑŠ,
-
-
-
-File: ./examples/3_get_dataset_terms/get_dataset_terms.js
-----------------------------------------
-import axios from "axios";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-
-// Required for __dirname in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const UUID = "33f6a9f7-195e-4d51-9a63-134304756255"
-const TOKEN = process.env.FASTCATALOG_TOKEN || "YOUR_BEARER_TOKEN";
-const API_URL = `https://api.fastcatalog.ai/v1/catalog-entries/${UUID}`;
-
-
-axios.get(API_URL, {
-  headers: {
-    "Authorization": `Bearer ${TOKEN}`
-  }
-}).then(res => {
-  console.log(JSON.stringify(res.data, null, 2));
-}).catch(err => {
-  if (err.response) {
-    console.error(err.response.status, err.response.data);
-  } else {
-    console.error(err);
-  }
-});
-
-
-
-File: ./examples/3_get_dataset_terms/get_dataset_terms.py
-----------------------------------------
-import requests, os
-import json
-
-UUID = "33f6a9f7-195e-4d51-9a63-134304756255"
-API_URL = f"https://api.fastcatalog.ai/v1/catalog-entries/{UUID}"
-TOKEN = os.getenv("FASTCATALOG_TOKEN", "YOUR_BEARER_TOKEN")   # Replace with your token
-
-headers = {
-    "Authorization": f"Bearer {TOKEN}"
-}
-
-response = requests.get(API_URL, headers=headers)
-print(response.status_code, json.dumps(response.json(), indent=2))
-
-
-
-File: ./examples/3_get_dataset_terms/README.md
-----------------------------------------
-# Get Dataset Terms
-
-This example retrieves the details of a dataset, including its terms, using its UUID.
-
-
-
-File: ./examples/5_generate_dataset_spreadsheet/generate_dataset_spreadsheet.py
-----------------------------------------
-import requests, os
-import json
-
-UUID = "33f6a9f7-195e-4d51-9a63-134304756255"
-API_URL = f"https://api.fastcatalog.ai/v1/catalog-entries/{UUID}/spreadsheet"
-TOKEN = os.getenv("FASTCATALOG_TOKEN", "YOUR_BEARER_TOKEN")   # Replace with your token
-
-TARGET_DIR = "output" # Directory to save the spreadsheet
-if not os.path.exists(TARGET_DIR):
-    os.makedirs(TARGET_DIR, exist_ok=True)
-
-payload = {
-    "fcai_uuids": [UUID],
-    "filename": "catalog_items.xlsx",
-    "include_lineage": True,
-    "depth": 3
-}
-
-headers = {
-    "Authorization": f"Bearer {TOKEN}",
-    "Content-Type": "application/json"
-}
-
-with requests.post(API_URL, json=payload, headers=headers, stream=True) as r:
-    r.raise_for_status()
-    content_disposition = r.headers.get('content-disposition', '')
-    if 'filename=' in content_disposition:
-        filename = content_disposition.split('filename=')[1].strip(' "')
-    else:
-        filename = 'catalog_items.xlsx'
-    filepath = os.path.join(TARGET_DIR, filename)
-    with open(filepath, 'wb') as f:
-        for chunk in r.iter_content(chunk_size=8192):
-            if chunk:
-                f.write(chunk)
-    print(f"Saved: {filepath}")
-
-
-
-File: ./examples/5_generate_dataset_spreadsheet/generate_dataset_spreadsheet.js
-----------------------------------------
-import axios from "axios";
-import fs from "fs";
-import path from "path";
-
-const TOKEN = process.env.FASTCATALOG_TOKEN || "YOUR_BEARER_TOKEN";
-const UUID = "33f6a9f7-195e-4d51-9a63-134304756255";
-const API_URL = `https://api.fastcatalog.ai/v1/catalog-entries/${UUID}/spreadsheet`;
-const TARGET_DIR = "output";
-
-if (!fs.existsSync(TARGET_DIR)) {
-  fs.mkdirSync(TARGET_DIR, { recursive: true });
-}
-
-const payload = {
-  fcai_uuids: [UUID],
-  filename: "catalog_items.xlsx",
-  include_lineage: true,
-  depth: 3
-};
-
-const headers = {
-  "Authorization": `Bearer ${TOKEN}`,
-  "Content-Type": "application/json"
-};
-
-axios.post(API_URL, payload, {
-  headers,
-  responseType: "stream"
-})
-.then(response => {
-  const disposition = response.headers['content-disposition'] || '';
-  let filename = "catalog_items.xlsx";
-  const match = disposition.match(/filename="?([^"]+)"?/);
-  if (match) filename = match[1];
-  const filepath = path.join(TARGET_DIR, filename);
-
-  const writer = fs.createWriteStream(filepath);
-  response.data.pipe(writer);
-
-  writer.on('finish', () => {
-    console.log(`Saved: ${filepath}`);
-  });
-
-  writer.on('error', () => {
-    console.error("Error: Could not write the file.");
-  });
-}).catch(err => {
-  if (err.response && (err.response.status === 401 || err.response.status === 403)) {
-    console.error(err.response.status, "Check your FASTCATALOG_TOKEN.");
-  } else if (err.response) {
-    console.error(`Error: ${err.response.status} ${err.response.statusText}`);
-  } else {
-    console.error("Network or script error.");
-  }
-});
-
-
-
-File: ./examples/5_generate_dataset_spreadsheet/README.md
-----------------------------------------
-# Generate Dataset Spreadsheet
-
-This example generates a spreadsheet for a single catalog entry (dataset) using its UUID.
-
-
-
-File: ./examples/4_get_ai_model_provenance/get_ai_model_provenance.py
-----------------------------------------
-import requests, os
-import json
-
-UUID = "e6bf1ff1-fba7-4fe4-bd82-6e79a3d745ba"
-API_URL = f"https://api.fastcatalog.ai/v1/catalog-entries/{UUID}/lineage"
-TOKEN = os.getenv("FASTCATALOG_TOKEN", "YOUR_BEARER_TOKEN")   # Replace with your token
-
-payload = {
-    "fcai_uuid": [UUID],
-    "max_depth": 3  # or as needed, up to 10
-}
-
-headers = {
-    "Authorization": f"Bearer {TOKEN}",
-    "Content-Type": "application/json"
-}
-
-response = requests.post(API_URL, json=payload, headers=headers)
-print(response.status_code, json.dumps(response.json(), indent=2))
-
-
-
-File: ./examples/4_get_ai_model_provenance/get_ai_model_provenance.js
-----------------------------------------
-import axios from "axios";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-
-// Required for __dirname in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const UUID = "e6bf1ff1-fba7-4fe4-bd82-6e79a3d745ba"
-const API_URL = `https://api.fastcatalog.ai/v1/catalog-entries/${UUID}/lineage`;
-const TOKEN = process.env.FASTCATALOG_TOKEN || "YOUR_BEARER_TOKEN";
-const payload = {
-  fcai_uuid: [UUID],
-  max_depth: 3 // or as needed, up to 10
-};
-
-axios.post(API_URL, payload, {
-  headers: {
-    "Authorization": `Bearer ${TOKEN}`,
-    "Content-Type": "application/json"
-  }
-}).then(res => {
-  console.log(JSON.stringify(res.data, null, 2));
-}).catch(err => {
-  if (err.response) {
-    console.error(err.response.status, err.response.data);
-  } else {
-    console.error(err);
-  }
-});
-
-
-
-File: ./examples/4_get_ai_model_provenance/README.md
-----------------------------------------
-# Get AI Model Provenance (Lineage)
-
-This example retrieves the lineage (provenance) information for an AI model using its UUID.
-
-
-
-File: ./examples/1_search_by_url/search_by_url.py
-----------------------------------------
-import requests, os
-import json
-
-API_URL = "https://api.fastcatalog.ai/v1/catalog-entries"
-TOKEN = os.getenv("FASTCATALOG_TOKEN", "YOUR_BEARER_TOKEN")   # Replace with your token
-
-payload = {
-    "homepages": ["https://huggingface.co/datasets/Salesforce/xlam-function-calling-60k"]
-}
-
-headers = {
-    "Authorization": f"Bearer {TOKEN}",
-    "Content-Type": "application/json"
-}
-
-response = requests.post(API_URL, json=payload, headers=headers)
-print(response.status_code, json.dumps(response.json(), indent=2))
-
-
-
-File: ./examples/1_search_by_url/README.md
-----------------------------------------
-# Search by Dataset URL
-
-This example searches the catalog for a dataset using its URL as a filter.
-
-
-
-File: ./examples/1_search_by_url/search_by_url.js
-----------------------------------------
-import axios from "axios";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-
-// Required for __dirname in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const TOKEN = process.env.FASTCATALOG_TOKEN || "YOUR_BEARER_TOKEN";
-
-const API_URL = "https://api.fastcatalog.ai/v1/catalog-entries";
-
-const payload = {
-  homepages: ["https://huggingface.co/datasets/Salesforce/xlam-function-calling-60k"]
-};
-
-axios.post(API_URL, payload, {
-  headers: {
-    "Authorization": `Bearer ${TOKEN}`,
-    "Content-Type": "application/json"
-  }
-}).then(res => {
-  console.log(JSON.stringify(res.data, null, 2));
-}).catch(err => {
-  if (err.response) {
-    console.error(err.response.status, err.response.data);
-  } else {
-    console.error(err);
-  }
-});
-
-
-
-File: ./examples/2_complex_search/complex_search.js
-----------------------------------------
-import axios from "axios";
-import fs from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
-
-// Required for __dirname in ES modules
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const TOKEN = process.env.FASTCATALOG_TOKEN || "YOUR_BEARER_TOKEN";
-
-
-
-File: ./README.md
-----------------------------------------
-# api-examples
-Examples to use the FastCatalog.ai API
-
-
-
-File: ./run_all_python_examples.sh
-----------------------------------------
-#!/bin/bash
-
-# Load environment variables from secrets/keys.env
-set -a
-source secrets/keys.env
-set +a
-
-
-set -e
-
-cd examples
-
-for dir in [1-5]_*/; do
-  pyfile=$(find "$dir" -maxdepth 1 -name '*.py')
-  if [ -n "$pyfile" ]; then
-    echo "Running $pyfile"
-    python3 "$pyfile"
-  fi
-done
-
-
-
