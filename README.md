@@ -35,9 +35,11 @@ The examples are organized into scenario-based folders under `examples/`, each w
 Python
 
 ```bash
-./run_all_python_examples.sh```
+./run_all_python_examples.sh
+```
 
 JS
 
 ```bash
-./run_all_js_examples.sh```
+./run_all_js_examples.sh
+```
