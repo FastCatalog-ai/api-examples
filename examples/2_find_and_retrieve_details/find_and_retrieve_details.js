@@ -47,7 +47,7 @@ function makeSummaryDict(data) {
 
 const BASE_URL = "https://api.fastcatalog.ai/v1";
 const SEARCH_API_URL = `${BASE_URL}/catalog-entries`;
-const TOKEN = process.env.FASTCATALOG_TOKEN || "H1ybgsyxQ8H1xZCrGJS0sWWZy2GACmZUn8w8hlu0QI"; // Replace with your token
+const TOKEN = process.env.FASTCATALOG_TOKEN || "YOUR_BEARER_TOKEN"; // Replace with your token
 
 const payload = {
   homepages: ["https://huggingface.co/datasets/Salesforce/xlam-function-calling-60k"]
